@@ -1,0 +1,9 @@
+<div *ngFor="let table of tables" 
+     class="table-card" 
+     (click)="reserveTable(table)">
+  <img [src]="table.image" alt="table image" class="table-image"/>
+  <div class="table-info">
+    <h3>{{ table.name }}</h3> <!-- You can use table.name or table.number -->
+    {{table.status}}
+  </div>
+</div>

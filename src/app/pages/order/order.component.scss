@@ -1,0 +1,144 @@
+$order-summary-bg: #eb2525;
+$past-orders-bg: #c71515;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+$header-bg: linear-gradient(135deg, #bfc9d8, #cf3d73);
+$button-primary: #007bff;
+$button-warn: #b34c56;
+$table-header-bg: #007bff;
+$table-row-bg: #f4f4f4;
+$hover-bg: #f1f1f1;
+$border-color: #c72020;
+
+.order-summary-card,
+.past-orders-card {
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: $card-shadow;
+  border-radius: 8px;
+  max-width: 1200px;
+}
+
+.order-header {
+  background: $header-bg;
+  color: #a54c4cfd;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.order-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+.order-list-table th,
+.order-list-table td {
+  text-align: left;
+  padding: 12px;
+}
+
+.order-list-table th {
+  background-color: $table-header-bg;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid $border-color;
+}
+
+.order-item-row {
+  border-bottom: 1px solid $border-color;
+  background-color: $table-row-bg;
+}
+
+.order-item-row:hover {
+  background-color: $hover-bg;
+}
+
+.order-item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.quantity-input {
+  width: 60px;
+  text-align: center;
+}
+
+.total-label {
+  font-weight: bold;
+  text-align: right;
+}
+
+.total-price {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.comments-section {
+  margin: 15px 0;
+}
+
+.comments-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+  font-size: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 24px;
+  border-radius: 8px;
+}
+
+button.mat-raised-button {
+  font-weight: bold;
+}
+
+button.mat-raised-button.color-primary {
+  background-color: $button-primary;
+  color: #fff;
+}
+
+button.mat-raised-button.color-warn {
+  background-color: $button-warn;
+  color: #fff;
+}
+
+button:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+  .order-summary-card,
+  .past-orders-card {
+    padding: 15px;
+  }
+
+  .order-list-table th,
+  .order-list-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  button {
+    width: 100%;
+  }
+}

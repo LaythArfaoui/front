@@ -1,0 +1,109 @@
+<mat-card class="order-summary-card">
+  <!-- Current Order Summary -->
+  <mat-card-header class="order-header">
+    <mat-card-title>🛒 Order Summary</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table class="order-list-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Total Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderItems" class="order-item-row">
+          <td>
+            <img [src]="item.food.picture" alt="{{ item.food.name }}" class="order-item-image">
+          </td>
+          <td>{{ item.food.name }}</td>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="item.quantity"
+              class="quantity-input"
+              min="0"
+              aria-label="Quantity"
+            />
+          </td>
+          <td>{{ item.food.price }} TND</td>
+          <td>{{ item.food.price * item.quantity | number: '1.2-2' }} TND</td>
+          <td>
+            <button mat-icon-button color="warn" (click)="removeItem(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td class="total-price">{{ getTotalPrice() | number: '1.2-2' }} TND</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+      <h3>📝 Comments</h3>
+      <textarea
+        matInput
+        placeholder="Write your comments here..."
+        [(ngModel)]="comments"
+        class="comments-input"
+      ></textarea>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-container">
+      <button mat-raised-button color="warn" (click)="clearOrder()">❌ Clear All</button>
+      <button mat-raised-button color="primary" (click)="submitOrder()">✅ Submit Order</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Past Orders Summary -->
+<mat-card class="past-orders-card">
+  <mat-card-header class="order-header">
+    <mat-card-title>📜 Past Orders</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <ng-container *ngIf="orders.length > 0; else noOrders">
+      <table class="order-list-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Items</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders" class="order-item-row">
+            <td>{{ order.id }}</td>
+            <td>{{ order.orderDate | date: 'short' }}</td>
+            <td>{{ order.status }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let item of order.orderItems">
+                  {{ item.food.name }} x {{ item.quantity }}
+                </li>
+              </ul>
+            </td>
+            <td>{{ order.total | number: '1.2-2' }} TND</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #noOrders>
+      <p>No orders found for this user.</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

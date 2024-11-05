@@ -1,0 +1,36 @@
+<mat-card class="card-with-shadow theme-card">
+  <mat-card-header class="card-header">
+    <mat-card-title class="card-title">Products View</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="card-content b-t-1">
+    <div class="product-container">
+      <button class="new-product-btn" (click)="openAddProductModal()">New Product</button>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td data-label="Image"><img [src]="product.picture" alt="{{ product.name }}" width="50"/></td>
+            <td data-label="Name">{{ product.name }}</td>
+            <td data-label="Price">{{ product.price }}</td>
+            <td data-label="Description">{{ product.description }}</td>
+            <td data-label="Category">{{ product.category }}</td>
+            <td data-label="Actions">
+              <button class="action-btn edit-btn" (click)="editProduct(product)">Edit</button>
+              <button class="action-btn delete-btn" (click)="deleteProduct(product)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

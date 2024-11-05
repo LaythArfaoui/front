@@ -1,0 +1,25 @@
+/* Mobile-specific styles */
+.mobile-header {
+    background-color: #28a745;
+    padding: 1rem;
+    color: white;
+  }
+  
+  .mobile-content {
+    padding: 1.5rem;
+  }
+  
+  /* Desktop-specific styles */
+  .desktop-header {
+    background-color: #007bff;
+    padding: 1.5rem;
+    color: white;
+  }
+  
+  .desktop-content {
+    padding: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  /* Further customizations for mobile and desktop views can be made with media queries */
+  

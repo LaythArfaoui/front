@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.admin-orders-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  color: #333;
+  font-size: 2rem;
+  border-bottom: 2px solid #5d87ff;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.order-table-container {
+  overflow-x: auto;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-table th,
+.order-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.order-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.btn-update {
+  padding: 0.5rem 1rem;
+  background-color: #5d87ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-update:hover {
+  background-color: #476bd8;
+}
+
+.btn-details {
+  padding: 0.5rem 1rem;
+  background-color: #df7ae8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .order-table thead {
+    display: none;
+  }
+
+  .order-table tbody,
+  .order-table tr,
+  .order-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .order-table tr {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .order-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .order-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: calc(50% - 30px);
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .btn-update, .btn-details {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  select {
+    width: 100%;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}

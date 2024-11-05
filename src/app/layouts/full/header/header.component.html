@@ -1,0 +1,13 @@
+<mat-toolbar class="topbar">
+
+  <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+    <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
+  </button>
+  
+  <span class="flex-1-auto"></span>
+
+
+  <button mat-stroked-button color="primary" (click)="logout()">
+    Logout
+  </button>
+</mat-toolbar>

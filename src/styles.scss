@@ -1,0 +1,38 @@
+/* Default styles for desktop */
+body {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px auto;
+  }
+  
+  /* Media query for tablets (between 768px and 1024px) */
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      padding: 15px;
+    }
+  }
+  
+  /* Media query for mobile devices (less than 768px) */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+  
+    .container {
+      flex-direction: column;
+      padding: 10px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+  }
+  

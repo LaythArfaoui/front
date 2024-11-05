@@ -1,0 +1,29 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .form-title {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 16px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+.mat-form-field {
+    margin-bottom: 20px;
+  }
+  
+  

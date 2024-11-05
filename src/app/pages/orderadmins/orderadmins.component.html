@@ -1,0 +1,52 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header class="order-header">
+    <mat-card-title class="m-b-0">Order list</mat-card-title>
+  </mat-card-header>
+    
+    <div class="order-table-container">
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Order number</th>
+            <th>Details</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <div class="mb-4">
+            <input
+              type="text"
+              placeholder="Search employees..."
+              class="w-full p-2 border border-gray-300 rounded-lg"
+              [(ngModel)]="searchText"
+              (ngModelChange)="filterEmployees()"
+            />
+          </div>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.id }}</td>
+            <td>
+              <button (click)="viewOrderDetails(order)" class="btn-details" >View Order Details</button>
+            </td>
+            <td>{{ order.orderDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ order.amount }}</td>
+            <td>
+              <select [formControl]="statusControls[order.id!]" >
+                <option value="PENDING">Pending</option>
+                <option value="PREPARING">Preparing</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="CANCELLED">Cancelled</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn-update" (click)="onUpdateStatus(order)">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card>
+
+  

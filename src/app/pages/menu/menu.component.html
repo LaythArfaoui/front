@@ -1,0 +1,60 @@
+<mat-card class="modern-card">
+  <mat-card-header class="modern-card-header">
+    <mat-card-title class="modern-title">Menu</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="modern-card-content">
+    <div class="filter-container">
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Search orders..."
+          class="search-input"
+          [(ngModel)]="searchText"
+          (ngModelChange)="filterOrders()"
+        />
+      </div>
+      <div class="category-container">
+        <label for="categorySelect" class="category-label">Category:</label>
+        <select id="categorySelect" [(ngModel)]="selectedCategory" (change)="filterOrders()" class="category-select">
+          <option value="">All</option>
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="product-grid">
+      <div class="product-card" *ngFor="let product of filteredProducts">
+        <mat-card class="product-card-inner">
+          <a routerLink="/widgets/cards">
+            <div class="product-image-container">
+              <img
+                [src]="product.picture ? product.picture : './assets/images/logos/default-image.jpeg'"
+                alt="{{ product.name }}"
+                class="product-image"
+                mat-card-image
+              />
+            </div>
+          </a>
+          <mat-card-content class="product-content">
+            <button
+              color="primary"
+              class="cart-btn"
+              matTooltip="Add to Cart"
+              (click)="openFoodSelectionModal(product)"
+            >
+              <i-tabler name="shopping-cart" class="cart-icon"></i-tabler>
+            </button>
+            <mat-card-title class="product-title">
+              {{ product.name }}
+            </mat-card-title>
+            <div class="price-container">
+              <h6 class="product-price">{{ product.price }} TND</h6>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
