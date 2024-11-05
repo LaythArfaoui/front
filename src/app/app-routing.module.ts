@@ -25,6 +25,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       
+      
       { path: 'menu', component: MenuComponent }, 
       { path: 'modal', component: FoodSelectionModalComponent }, 
       { path: 'order', component: OrderComponent },
