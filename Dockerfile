@@ -1,7 +1,6 @@
 # Step 1: Build the Angular app with Node.js v20
 FROM node:20 AS build
 
-# Set the working directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json first for better caching
@@ -19,8 +18,8 @@ RUN npm run build -- --configuration=production
 # Step 2: Serve the app with a simple HTTP server (Nginx)
 FROM nginx:alpine
 
-# Copy the Angular build files into the Nginx directory
-COPY --from=build /app/dist/my-angular-app /usr/share/nginx/html
+# Copy the Angular build files into the Nginx directory (Update with your actual folder name)
+COPY --from=build /app/dist/front/usr/share/nginx/html
 
 # Expose the port the app will run on
 EXPOSE 80
