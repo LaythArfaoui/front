@@ -19,7 +19,7 @@ RUN ng build
 FROM nginx:alpine
 
 # Ensure the nginx.conf file is present in the build context (same folder as Dockerfile)
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Remove any default content in Nginx's html folder
 RUN rm -rf /usr/share/nginx/html/*
