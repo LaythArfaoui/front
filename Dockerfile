@@ -1,14 +1,15 @@
 # Step 1: Build the Angular app with Node.js v20
 FROM node:20 AS builder
 
-WORKDIR /src/app
+WORKDIR /app
+RUN npm install -g @angular/cli
+
 
 # Copy package.json and package-lock.json first for better caching
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
-
 # Copy the rest of the application code
 COPY . .
 CMD ["ng", "serve"]
