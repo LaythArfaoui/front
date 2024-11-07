@@ -28,7 +28,6 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the Angular build files into the Nginx directory
 COPY --from=builder /app/dist /usr/share/nginx/html
-RUN chmod -R 755 /usr/share/nginx/html && chown -R nginx:nginx /usr/share/nginx/html
 # Expose the port the app will run on
 EXPOSE 80
 
