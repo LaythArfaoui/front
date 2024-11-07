@@ -12,8 +12,9 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
+CMD ["ng","serve"] 
 # Build the Angular application for production
-RUN npm run build -- --configuration=production
+RUN ng run build -- --configuration=production
 
 # Step 2: Serve the app with a simple HTTP server (Nginx)
 FROM nginx:alpine
@@ -29,4 +30,4 @@ COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 80
 
 # Start the Nginx server to serve the app
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
