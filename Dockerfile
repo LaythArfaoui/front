@@ -1,7 +1,7 @@
 # Step 1: Build the Angular app with Node.js v20
 FROM node:20 AS builder
 
-WORKDIR /app
+WORKDIR /src/app
 
 # Copy package.json and package-lock.json first for better caching
 COPY package*.json ./
@@ -19,7 +19,7 @@ RUN ng build
 FROM nginx:alpine
 
 # Ensure the nginx.conf file is present in the build context (same folder as Dockerfile)
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Remove any default content in Nginx's html folder
 RUN rm -rf /usr/share/nginx/html/*
