@@ -26,8 +26,8 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy the Angular build files from the previous stage
+# Ensure you're copying the correct directory from /app/dist/<project-name>
 COPY --from=builder /app/dist/ /app
-
 # Install a lightweight HTTP server to serve the Angular app
 RUN npm install -g http-server
 
@@ -35,4 +35,4 @@ RUN npm install -g http-server
 EXPOSE 8080
 
 # Run the application with HTTP server on port 8080
-CMD ["http-server", "dist", "-p", "8080", "-c-1"]
+CMD ["http-server", ".", "-p", "8080", "-c-1"]
