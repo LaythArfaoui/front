@@ -14,22 +14,20 @@ RUN npm install
 COPY . .
 
 # Build the Angular application for production
-RUN ng build --prod
+RUN ng build --configuration production
 
 # Step 2: Serve the app with a lightweight HTTP server
-# Use a minimal Node.js image to serve the app
 FROM node:20-slim
 
-# Set the working directory
 WORKDIR /app
 
 # Copy the Angular build files from the builder stage
 COPY --from=builder /app/dist/ /app
 
-# Install a lightweight HTTP server, like http-server, to serve the app
+# Install a lightweight HTTP server
 RUN npm install -g http-server
 
-# Expose the port that the app will run on
+# Expose the port
 EXPOSE 8080
 
 # Start the server
