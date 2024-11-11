@@ -35,4 +35,4 @@ RUN npm install -g http-server
 EXPOSE 8080
 
 # Run the application with HTTP server on port 8080
-CMD ["http-server", "-p", "8080", "/app", "-c-1", "--proxy", "http://localhost:8080?"]
+CMD ["http-server", "dist", "-p", "8080", "-c-1"]
