@@ -16,21 +16,21 @@
         </div>
         <mat-card class="b-1 shadow-none inner-card" style="border-radius: 5px;">
           <mat-card-header class="custom-card-header" style="border-radius: 5px;">
-            <mat-card-title>Number: {{ order.id }}</mat-card-title>
+            <mat-card-title>Number: {{ order?.id }}</mat-card-title>
           </mat-card-header>
           <mat-card-content class="b-t-1">
             <mat-list role="list" *ngIf="order">
-              <mat-list-item role="listitem"><strong>Client Name:</strong> {{ order.client.firstname }} {{ order.client.lastname }} </mat-list-item>
-              <mat-list-item role="listitem"><strong>Client Email:</strong> {{ order.client.email }}</mat-list-item>
-              <mat-list-item role="listitem"><strong>Date:</strong> {{ order.orderDate }}</mat-list-item>
-              <mat-list-item role="listitem"><strong>Status:</strong> {{ order.status }}</mat-list-item>
-              <mat-list-item role="listitem"><strong>Comment:</strong> {{ order.comment }}</mat-list-item>
-              <mat-list-item role="listitem"><strong>Total:</strong> {{ order.total }}</mat-list-item>
+              <mat-list-item role="listitem"><strong>Client Name:</strong> {{ order?.client?.firstname }} {{order?.client?.lastname}} </mat-list-item>
+              <mat-list-item role="listitem"><strong>Client Email:</strong> {{ order?.client?.email }}</mat-list-item>
+              <mat-list-item role="listitem"><strong>Date:</strong> {{ order?.orderDate }}</mat-list-item>
+              <mat-list-item role="listitem"><strong>Status:</strong> {{ order?.status }}</mat-list-item>
+              <mat-list-item role="listitem"><strong>Comment:</strong> {{ order?.comment }}</mat-list-item>
+              <mat-list-item role="listitem"><strong>Total:</strong> {{ order?.total }}</mat-list-item>
               <p></p>
               <mat-list-item role="listitem"><strong>Items:</strong>
                 <ul>
                   <li *ngFor="let item of filteredItems">
-                    {{ item.food.name }} - Quantity: {{ item.quantity }}
+                    {{ item.food?.name }} - Quantity: {{ item.quantity }}
                   </li>
                 </ul>
               </mat-list-item>
