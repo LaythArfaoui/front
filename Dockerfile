@@ -22,7 +22,7 @@ FROM node:20-slim
 WORKDIR /app
 
 # Copy the Angular build files from the builder stage
-COPY --from=builder /app/dist/ /app
+COPY --from=builder /app/dist/app/ /app
 
 # Install a lightweight HTTP server
 RUN npm install -g http-server
