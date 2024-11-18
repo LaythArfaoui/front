@@ -1,7 +1,7 @@
 # Step 1: Build the Angular app
 FROM node:20 AS builder
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json first to install dependencies
@@ -10,29 +10,29 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Install Angular CLI globally
-RUN npm install -g @angular/cli
-
 # Copy the rest of the application code
 COPY . .
 
 # Build the Angular application for production
-RUN ng build --configuration production
+RUN npm run build -- --configuration production
 
-# Step 2: Use a lightweight Node.js image to serve the app
-FROM node:20-alpine
+# Step 2: Use Nginx to serve the app
+FROM nginx:alpine
 
-# Set the working directory
-WORKDIR /app
+# Set working directory for Nginx
+WORKDIR /usr/share/nginx/html
 
-# Copy the Angular build files from the previous stage
-# Ensure you're copying the correct directory from /app/dist/<project-name>
-COPY --from=builder /app/dist/ /app
-# Install a lightweight HTTP server to serve the Angular app
-RUN npm install -g http-server
+# Remove default Nginx files
+RUN rm -rf ./*
 
-# Expose the port the app will run on
-EXPOSE 8080
+# Copy Angular build files from builder stage
+COPY --from=builder /app/dist/front/ ./
 
-# Run the application with HTTP server on port 8080
-CMD ["http-server", ".", "-p", "8080", "-c-1"]
+# Copy custom Nginx configuration (if applicable)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose the Nginx port
+EXPOSE 80
+
+# Start the Nginx server
+CMD ["nginx", "-g", "daemon off;"]
