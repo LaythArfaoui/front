@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthserviceService } from '../authservice.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +14,6 @@ export class AppSideRegisterComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
-
-  errorMessage: string | null = null; // Variable to store the error message
 
   constructor(private authService: AuthserviceService, private router: Router) {}
 
@@ -33,17 +30,15 @@ export class AppSideRegisterComponent {
         password: this.form.get('password')?.value,
       };
 
-      this.authService.register(registerData).subscribe({
-        next: (response) => {
+      this.authService.register(registerData).subscribe(
+        response => {
           console.log('Registration successful:', response);
-          this.errorMessage = null; // Clear any previous error message
           this.router.navigate(['/authentication/login']);
         },
-        error: (error: HttpErrorResponse) => {
+        error => {
           console.error('Registration failed:', error);
-          this.errorMessage = error.error?.message || 'Registration failed. Please try again.'; // Set error message
-        },
-      });
+        }
+      );
     }
   }
 }
