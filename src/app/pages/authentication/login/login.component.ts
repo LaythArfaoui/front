@@ -31,25 +31,19 @@ export class AppSideLoginComponent {
 
       this.authService.authenticate(loginData).subscribe(
         response => {
-          console.log('Login successful:', response);
           const token = response.body?.token;
           if (token) {
-            localStorage.setItem('token', token);
+            this.authService.saveToken(token);
             const decodedToken: any = jwtDecode(token);
             const role = decodedToken.role;
             localStorage.setItem('role', role);
 
             // Redirect based on role
             if (role === 'ADMIN') {
-              this.router.navigate(['/orderadmins']); // Admin sees orders and products
+              this.router.navigate(['/admin']);
             } else if (role === 'USER') {
-              this.router.navigate(['/menu']); // User sees menu and orders
-            } else {
-              console.error('Unknown role:', role);
+              this.router.navigate(['/user']);
             }
-            console.log('User role and token stored in localStorage');
-          } else {
-            console.error('Token is missing in the response');
           }
         },
         error => {
