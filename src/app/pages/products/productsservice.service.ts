@@ -7,7 +7,7 @@ import { Food } from '../models/food';
   providedIn: 'root'
 })
 export class ProductsService {
-  private baseUrl = 'http://localhost:8080/api/foods';
+  private baseUrl = 'https://springboot-render-5-vor0.onrender.com/api/foods';
 
   constructor(private http: HttpClient) {}
 

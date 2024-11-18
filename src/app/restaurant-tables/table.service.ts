@@ -14,7 +14,7 @@ export interface Table {
   providedIn: 'root'
 })
 export class TableService {
-  private apiUrl = 'http://localhost:8080/api/tables';
+  private apiUrl = 'https://springboot-render-5-vor0.onrender.com/api/tables';
 
   constructor(private http: HttpClient) {}
 
