@@ -26,7 +26,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Copy Angular build files from builder stage
-COPY --from=builder /app/dist/front/ ./
+COPY --from=builder /app/dist/modernize/ ./
 
 # Copy custom Nginx configuration (if applicable)
 COPY nginx.conf /etc/nginx/nginx.conf
