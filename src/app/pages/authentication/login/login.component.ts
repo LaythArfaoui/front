@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class AppSideLoginComponent {
   form: FormGroup;
+  errorMessage: string | null = null; // Variable to store error messages
 
   constructor(private authService: AuthserviceService, private router: Router) {
     this.form = new FormGroup({
@@ -31,7 +32,8 @@ export class AppSideLoginComponent {
 
       this.authService.authenticate(loginData).subscribe(
         response => {
-          const token = response.body?.token;
+          // Assuming the response contains the token in a different format, check structure.
+          const token = response?.token || response?.body?.token; // Check response body
           if (token) {
             this.authService.saveToken(token);
             const decodedToken: any = jwtDecode(token);
@@ -44,12 +46,17 @@ export class AppSideLoginComponent {
             } else if (role === 'USER') {
               this.router.navigate(['/user']);
             }
+          } else {
+            this.errorMessage = 'Authentication failed. No token received.';
           }
         },
         error => {
           console.error('Login failed:', error);
+          this.errorMessage = 'Login failed. Please check your credentials and try again.';
         }
       );
+    } else {
+      this.errorMessage = 'Please fill in the form correctly.';
     }
   }
 }
